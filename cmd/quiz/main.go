@@ -15,11 +15,11 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	numCorrect, err := quiz.Run()
+	numRight, err := quiz.Run()
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Printf("\nThe quiz had %d questions. You got %d right.\n", quiz.NumQuestions, numCorrect)
+	fmt.Printf("\nThe quiz had %d questions. You got %d right.\n", quiz.NumQuestions, numRight)
 }
 
 func parseArgs() (string, int, bool) {

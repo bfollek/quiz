@@ -30,7 +30,7 @@ func TestLoadQuestions(t *testing.T) {
 		{testFile, 6},
 	}
 	for _, c := range cases {
-		questions, err := loadQuestions(c.file)
+		questions, err := loadQuestions(c.file, false)
 		if err != nil {
 			t.Errorf("Fail: unexpected error: %v", err)
 		}
@@ -39,7 +39,7 @@ func TestLoadQuestions(t *testing.T) {
 			t.Errorf("Fail: expected length %d, got %d", c.expectedLen, resultLen)
 		}
 	}
-	_, err := loadQuestions(noSuchFile)
+	_, err := loadQuestions(noSuchFile, false)
 	if err == nil {
 		t.Error("Fail: Expected error because file doesn't exist, but err was nil")
 	}
@@ -82,7 +82,7 @@ func TestNewQuizShuffled(t *testing.T) {
 		{testFile, 5},
 	}
 	for _, c := range cases {
-		unshuffledQuestions, _ := loadQuestions(c.file)
+		unshuffledQuestions, _ := loadQuestions(c.file, false)
 		for i := 0; i < c.tries; i++ {
 			quiz, _ := NewQuiz(c.file, 30, true)
 			for _, unshuf := range unshuffledQuestions {
